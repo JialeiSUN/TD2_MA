@@ -3,7 +3,8 @@ package td2_modelisation.version1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repertoire extends Composantlmpl implements Composite{
+public class Repertoire extends Composantlmpl implements Composant,Composite<Composant>{
+
     private List<Composant> children;
     protected Repertoire(String name, Owner owner) {
         super(name, owner);
@@ -30,7 +31,7 @@ public class Repertoire extends Composantlmpl implements Composite{
     }
     public Composant appendContentToDir(String content) {
         FSFactory fsFactory = FSFactory.getInstance();
-        Composant fichier = fsFactory.createComposant(ComposantType.FICHER,String.valueOf(Object.hash(content)+"file"),this.getOwner());
+        Composant fichier = fsFactory.createComposant(ComposantType.FICHER,String.valueOf("file"),this.getOwner());
         fichier.appendContent(content);
         addChild(fichier);
         return fichier;
@@ -50,9 +51,10 @@ public class Repertoire extends Composantlmpl implements Composite{
     }
 
     @Override
-    public boolean removeChild(Object o) {
+    public boolean removeChild(Composant composant) {
         return false;
     }
+
 
     @Override
     public boolean removeChildren(List t) {
