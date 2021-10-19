@@ -1,8 +1,10 @@
 package td2_modelisation.version1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repertoire extends Composantlmpl implements Composite{
+    private List<Composant> children;
     protected Repertoire(String name, Owner owner) {
         super(name, owner);
     }
@@ -23,21 +25,28 @@ public class Repertoire extends Composantlmpl implements Composite{
     }
 
     @Override
-    public void appendContent(String name) {
+    public void appendContent(String name){
 
+    }
+    public Composant appendContentToDir(String content) {
+        FSFactory fsFactory = FSFactory.getInstance();
+        Composant fichier = fsFactory.createComposant(ComposantType.FICHER,String.valueOf(Object.hash(content)+"file"),this.getOwner());
+        fichier.appendContent(content);
+        addChild(fichier);
+        return fichier;
     }
 
     @Override
     public boolean isComposite() {
-        return false;
+        return true;
     }
     public List<Composant> getChildren(){
-        return null;
+        return new ArrayList<>(this.children);
     }
 
     @Override
-    public void addChild(Object o) {
-
+    public void addChild(Composant composant) {
+        this.children.add(composant);
     }
 
     @Override

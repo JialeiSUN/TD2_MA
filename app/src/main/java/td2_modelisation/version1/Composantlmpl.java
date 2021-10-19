@@ -12,7 +12,7 @@ public abstract class Composantlmpl implements Composant {
 
 
     public String getName() {
-        return name;
+        return this.name;
     }
     public Owner getOwner(){
         return  owner;
@@ -26,12 +26,12 @@ public abstract class Composantlmpl implements Composant {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Composantlmpl that = (Composantlmpl) o;
-        return Objects.equals(name, that.name) && Objects.equals(owner, that.owner);
+        Ficher fichier = (Ficher) o;
+        return Objects.equals(name, fichier.getname());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, owner);
+        return Objects.hash(this.getName());
     }
 }

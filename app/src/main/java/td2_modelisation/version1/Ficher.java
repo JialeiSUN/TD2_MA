@@ -1,15 +1,17 @@
 package td2_modelisation.version1;
 
-public class Ficher extends Composantlmpl{
-    StringBuilder content;
+public class Ficher extends Composantlmpl implements Composant{
+    private StringBuilder content;
+    private String name;
     public Ficher(String name, Owner owner) {
         super(name, owner);
+        content  = new StringBuilder();
     }
 
 
-    @Override
+    @Override//erreur
     public String getname() {
-        return null;
+        return this.name;
     }
 
     public int getSize(){
@@ -30,5 +32,7 @@ public class Ficher extends Composantlmpl{
     public boolean isComposite() {
         return false;
     }
-
+    public String toString(){
+        return getContent();
+    }
 }
